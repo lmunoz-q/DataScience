@@ -1,0 +1,11 @@
+services:
+
+  db:
+    image: postgres
+    container_name: pg-piscineds
+    environment:
+      POSTGRES_USER: lmunoz-q
+      POSTGRES_PASSWORD: "mysecretpassword"
+      POSTGRES_DB: "piscineds"
+    ports:
+     - "5432:5432"

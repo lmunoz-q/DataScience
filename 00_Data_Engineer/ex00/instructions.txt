@@ -1,0 +1,7 @@
+docker compose up -d
+
+docker run --rm -it --network host postgres:16-alpine \
+  psql -U lmunoz-q -d piscineds -h localhost -W
+
+car psql n'est pas installe sur les pcs
+network host = localhost de la machine, on touche bien au ports 5432 par postgres

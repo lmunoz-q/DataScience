@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:16-alpine
+    image: postgres
     container_name: pg-piscineds
     environment:
       POSTGRES_USER: lmunoz-q
@@ -10,7 +10,7 @@ services:
       - "5432:5432"
     # (Optionnel mais recommandé)
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/
 
   pgadmin:
     image: dpage/pgadmin4

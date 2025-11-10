@@ -11,6 +11,7 @@ services:
     # (Optionnel mais recommandé)
     volumes:
       - pgdata:/var/lib/postgresql/
+      - ./customer:/data/custommer:ro
 
   pgadmin:
     image: dpage/pgadmin4

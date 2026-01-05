@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:16-alpine
+    image: postgres
     container_name: pg-piscineds
     environment:
       POSTGRES_USER: lmunoz-q

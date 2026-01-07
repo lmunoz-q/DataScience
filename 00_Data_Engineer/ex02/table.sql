@@ -1,4 +1,4 @@
-CREATE TABLE data_2022_oct (
+CREATE TABLE IF NOT EXISTS data_2022_oct (
 	event_time		TIMESTAMPTZ,
 	event_type		VARCHAR(40),
 	product_id		INTEGER,
@@ -7,7 +7,7 @@ CREATE TABLE data_2022_oct (
 	user_session	UUID
 );
 
-CREATE TABLE data_2022_nov (
+CREATE TABLE IF NOT EXISTS data_2022_nov (
 	event_time		TIMESTAMPTZ,
 	event_type		VARCHAR(40),
 	product_id		INTEGER,
@@ -16,7 +16,7 @@ CREATE TABLE data_2022_nov (
 	user_session	UUID
 );
 
-CREATE TABLE data_2022_dec (
+CREATE TABLE IF NOT EXISTS data_2022_dec (
 	event_time		TIMESTAMPTZ,
 	event_type		VARCHAR(40),
 	product_id		INTEGER,
@@ -25,7 +25,7 @@ CREATE TABLE data_2022_dec (
 	user_session	UUID
 );
 
-CREATE TABLE data_2023_jan (
+CREATE TABLE IF NOT EXISTS data_2023_jan (
 	event_time		TIMESTAMPTZ,
 	event_type		VARCHAR(40),
 	product_id		INTEGER,

@@ -1,0 +1,4 @@
+\l
+\c connect
+\d
+SELECT * FROM table ;

@@ -33,20 +33,3 @@ CREATE TABLE data_2023_jan (
 	user_id			BIGINT,
 	user_session	UUID
 );
-
-
-COPY data_2022_oct(event_time,event_type,product_id,price,user_id,user_session)
-FROM '<chemin_interne_dans_le_conteneur>'
-WITH (FORMAT csv, HEADER true);
-
-COPY data_2022_nov(event_time,event_type,product_id,price,user_id,user_session)
-FROM '<chemin_interne_dans_le_conteneur>'
-WITH (FORMAT csv, HEADER true);
-
-COPY data_2022_dec(event_time,event_type,product_id,price,user_id,user_session)
-FROM '<chemin_interne_dans_le_conteneur>'
-WITH (FORMAT csv, HEADER true);
-
-COPY data_2023_jan(event_time,event_type,product_id,price,user_id,user_session)
-FROM '<chemin_interne_dans_le_conteneur>'
-WITH (FORMAT csv, HEADER true);

@@ -21,5 +21,5 @@ csvs = glob.glob(os.path.join(CSV_DIR, "*.csv"))
 
 for path in csvs:
   table = os.path.splitext(os.path.basename(path))[0]
-  cmd1 = f'psql -h {DB_HOST} -U {DB_USER} -d {DB_NAME} -c "{DDL.format(table=table)}"'
-  subprocess.run(shlex.split(cmd1), check=True, env=env_with_pass)
+  cmd = f'psql -h {DB_HOST} -U {DB_USER} -d {DB_NAME} -c "{DDL.format(table=table)}"'
+  subprocess.run(shlex.split(cmd), check=True, env=env_with_pass)

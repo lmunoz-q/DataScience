@@ -7,12 +7,12 @@ DB_USER = "lmunoz-q"
 PG_PASS = "mysecretpassword"
 
 DDL = """CREATE TABLE IF NOT EXISTS {table} (
-  event_time   TIMESTAMPTZ NOT NULL,
-  event_type   VARCHAR(40) NOT NULL,
-  product_id   INTEGER NOT NULL,
-  price        NUMERIC(1000,2) NOT NULL,
-  user_id      BIGINT NOT NULL,
-  user_session UUID NOT NULL
+  event_time   TIMESTAMPTZ,
+  event_type   VARCHAR(40),
+  product_id   INTEGER,
+  price        NUMERIC(1000,2),
+  user_id      BIGINT,
+  user_session UUID
 );"""
 
 env_with_pass = {**os.environ, "PGPASSWORD": PG_PASS}

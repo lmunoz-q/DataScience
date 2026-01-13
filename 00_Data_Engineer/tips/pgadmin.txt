@@ -1,4 +1,0 @@
-ne pas oublier 
-host = db
-
-cocher header

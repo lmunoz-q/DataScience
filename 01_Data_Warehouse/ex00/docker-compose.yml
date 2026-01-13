@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres
+    container_name: pg-piscineds
+    environment:
+      POSTGRES_USER: lmunoz-q
+      POSTGRES_PASSWORD: 42
+      POSTGRES_DB: piscineds
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@local.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db

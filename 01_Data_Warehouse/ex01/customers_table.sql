@@ -7,4 +7,7 @@ CREATE TABLE IF NOT EXISTS customers (
   user_session UUID
 );
 
-SELECT * FROM
+INSERT INTO customers
+SELECT * FROM data_2023_feb
+UNION ALL
+SELECT * FROM data_2023_feb2;

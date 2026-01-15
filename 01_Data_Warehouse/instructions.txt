@@ -1,10 +1,6 @@
 docker run --rm -it --network host postgres \
   psql -U lmunoz-q -d piscineds -h localhost -W
 
-car psql n'est pas installe sur les pcs
-network host = localhost de la machine, on touche bien au ports 5432 par postgres
-
-
 ////
 
 docker stop $(docker ps -aq) 2>/dev/null || true
@@ -18,4 +14,3 @@ docker ps -a
 docker images -a
 docker volume ls
 docker network ls
-

@@ -1,3 +1,6 @@
-CREATE INDEX CONCURRENTLY customers_dedupe_idx
-ON customers (event_time, event_type, product_id, price, user_id, user_session);
+CREATE TABLE customers_clean AS
+SELECT DISTINCT *
+FROM customers;
 
+DROP TABLE customers;
+ALTER TABLE customers_clean RENAME TO customers;

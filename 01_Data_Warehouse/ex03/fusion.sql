@@ -5,9 +5,7 @@ CREATE TABLE IF NOT EXISTS items (
   brand        TEXT
 );
 
-\copy items(product_id, category_id, category_code, brand)
-FROM '/chemin/vers/items.csv'
-WITH (FORMAT csv, HEADER true, DELIMITER ',', NULL '');
+-- faire la copie de {items}
 
 ALTER TABLE customers
   ADD COLUMN IF NOT EXISTS category_id BIGINT,

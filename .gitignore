@@ -3,3 +3,4 @@ ressources
 .DS_Store
 customer/
 *.csv
+data/

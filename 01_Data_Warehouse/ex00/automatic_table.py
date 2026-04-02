@@ -1,6 +1,6 @@
 import glob, os, subprocess, shlex
 
-CSV_DIR = "../data"
+CSV_DIR = "./data"
 DB_HOST = "localhost"
 DB_NAME = "piscineds"
 DB_USER = "lmunoz-q"

@@ -6,7 +6,7 @@ DB_NAME = "piscineds"
 DB_USER = "lmunoz-q"
 PG_PASS = "42"
 
-DDL = """CREATE TABLE IF NOT EXISTS {table} (
+CREATE_TABLE = """CREATE TABLE IF NOT EXISTS {table} (
   event_time   TIMESTAMPTZ,
   event_type   VARCHAR(40),
   product_id   INTEGER,
@@ -23,7 +23,7 @@ csvs = glob.glob(os.path.join(CSV_DIR, "*.csv"))
 
 for path in csvs:
     table = os.path.splitext(os.path.basename(path))[0]
-    cmd = f'psql -h {DB_HOST} -U {DB_USER} -d {DB_NAME} -c "{DDL.format(table=table)}"'
+    cmd = f'psql -h {DB_HOST} -U {DB_USER} -d {DB_NAME} -c "{CREATE_TABLE.format(table=table)}"'
     subprocess.run(shlex.split(cmd), check=True, env=env_with_pass)
 
     copy = COPY_CMD.format(table=table, path=os.path.abspath(path))

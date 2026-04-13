@@ -1,3 +1,6 @@
+CREATE INDEX idx_customers_dedup 
+ON customers (user_session, user_id, event_type, product_id, price, event_time);
+
 DELETE FROM customers a
 USING customers b
 WHERE
@@ -9,3 +12,5 @@ WHERE
   AND a.event_time >= b.event_time
   AND a.event_time < b.event_time + INTERVAL '1 second'
   AND (a.event_time > b.event_time OR a.ctid > b.ctid);
+
+DROP INDEX idx_customers_dedup;

@@ -1,16 +1,28 @@
-CREATE INDEX idx_customers_dedup 
-ON customers (user_session, user_id, event_type, product_id, price, event_time);
+BEGIN;
 
-DELETE FROM customers a
-USING customers b
+CREATE TABLE customers_clean AS
+SELECT
+	event_time,
+	event_type,
+	product_id,
+	price,
+	user_id,
+	user_session
+FROM (
+	SELECT
+		c.*,
+		LAG(event_time) OVER (
+			PARTITION BY user_session, user_id, event_type, product_id, price
+			ORDER BY event_time, ctid
+		) AS previous_event_time
+	FROM customers c
+) AS ordered_customers
 WHERE
-  a.user_session	IS NOT DISTINCT FROM b.user_session
-  AND a.user_id		IS NOT DISTINCT FROM b.user_id
-  AND a.event_type	IS NOT DISTINCT FROM b.event_type
-  AND a.product_id	IS NOT DISTINCT FROM b.product_id
-  AND a.price		IS NOT DISTINCT FROM b.price
-  AND a.event_time >= b.event_time
-  AND a.event_time <= b.event_time + INTERVAL '1 second'
-  AND (a.event_time > b.event_time OR a.ctid > b.ctid);
+	previous_event_time IS NULL
+	OR event_time > previous_event_time + INTERVAL '1 second';
 
-DROP INDEX idx_customers_dedup;
+DROP TABLE customers;
+
+ALTER TABLE customers_clean RENAME TO customers;
+
+COMMIT;

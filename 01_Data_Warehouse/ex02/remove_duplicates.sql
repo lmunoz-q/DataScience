@@ -10,7 +10,7 @@ WHERE
   AND a.product_id	IS NOT DISTINCT FROM b.product_id
   AND a.price		IS NOT DISTINCT FROM b.price
   AND a.event_time >= b.event_time
-  AND a.event_time < b.event_time + INTERVAL '1 second'
+  AND a.event_time <= b.event_time + INTERVAL '1 second'
   AND (a.event_time > b.event_time OR a.ctid > b.ctid);
 
 DROP INDEX idx_customers_dedup;

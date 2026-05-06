@@ -14,3 +14,45 @@ docker ps -a
 docker images -a
 docker volume ls
 docker network ls
+
+
+------------------------
+verification de doublons
+TEST 1
+SELECT COUNT(*)
+FROM (
+    SELECT
+        event_time,
+        LAG(event_time) OVER (
+            PARTITION BY user_session, user_id, event_type, product_id, price
+            ORDER BY event_time, ctid
+        ) AS previous_event_time
+    FROM customers
+) AS check_duplicates
+WHERE
+    previous_event_time IS NOT NULL
+    AND event_time <= previous_event_time + INTERVAL '1 second';
+
+TEST 2
+SELECT COUNT(*)
+FROM (
+    SELECT
+        event_time,
+        event_type,
+        product_id,
+        price,
+        user_id,
+        user_session,
+        COUNT(*)
+    FROM customers
+    GROUP BY
+        event_time,
+        event_type,
+        product_id,
+        price,
+        user_id,
+        user_session
+    HAVING COUNT(*) > 1
+) AS exact_duplicates;
+
+mais prends mil ans

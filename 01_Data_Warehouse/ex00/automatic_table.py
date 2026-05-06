@@ -36,4 +36,4 @@ for path in csvs:
 #FEDORA
     cmd2 = f'podman exec -i pg-piscineds psql -U {DB_USER} -d {DB_NAME} -c "{copy}"'
     subprocess.run(shlex.split(cmd2), check=True, env=env_with_pass)
-    print(f"✅ {table} chargée")
+    print(f"✅ {table} loaded")

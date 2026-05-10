@@ -15,8 +15,6 @@ ORDER BY count DESC;
 
 df = pd.read_sql(query, engine)
 
-print(df)
-
 plt.figure(figsize=(8, 8))
 plt.pie(
     df["count"],
@@ -25,6 +23,6 @@ plt.pie(
     startangle=90
 )
 
-plt.title("User activity on the site")
+plt.title("Event type from Customers")
 plt.axis("equal")
 plt.show()

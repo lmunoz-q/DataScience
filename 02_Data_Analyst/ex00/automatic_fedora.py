@@ -23,17 +23,13 @@ csvs = glob.glob(os.path.join(CSV_DIR, "*.csv"))
 
 for path in csvs:
     table = os.path.splitext(os.path.basename(path))[0]
-#UBUNTU
-    cmd = f'psql -h {DB_HOST} -U {DB_USER} -d {DB_NAME} -c "{CREATE_TABLE.format(table=table)}"'
-#FEDORA
-#    cmd = f'podman exec -i pg-piscineds psql -U {DB_USER} -d {DB_NAME} -c "{CREATE_TABLE.format(table=table)}"'
+    cmd = f'podman exec -i pg-piscineds psql -U {DB_USER} -d {DB_NAME} -c "{CREATE_TABLE.format(table=table)}"'
     subprocess.run(shlex.split(cmd), check=True, env=env_with_pass)
 
+    filepath = os.path.abspath(path)
     filename = os.path.basename(path)
     copy = COPY_CMD.format(table=table, filename=filename)
-#UBUNTU
-    cmd2 = f"psql -h {DB_HOST} -U {DB_USER} -d {DB_NAME} -c \"{copy}\""
-#FEDORA
-#    cmd2 = f'podman exec -i pg-piscineds psql -U {DB_USER} -d {DB_NAME} -c "{copy}"'
+    cmd2 = f'podman exec -i pg-piscineds psql -U {DB_USER} -d {DB_NAME} -c "{copy}"'
     subprocess.run(shlex.split(cmd2), check=True, env=env_with_pass)
     print(f"✅ {table} loaded")
+

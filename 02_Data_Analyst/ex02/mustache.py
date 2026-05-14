@@ -7,10 +7,25 @@ engine = create_engine(
 )
 
 query = """
-SELECT price
+SELECT price::float AS price
 FROM customers
 WHERE event_type = 'purchase';
 """
 
 df = pd.read_sql(query, engine)
-print(df["price"].describe())
+
+ret = df["price"].describe()
+print(ret.to_string(float_format="{:.2f}".format))
+
+fig1, ax1 = plt.subplots(figsize=(8, 5))
+
+ax1.boxplot(
+    df["price"],
+    vert=False
+)
+
+ax1.set_title("Price distribution of purchased items")
+ax1.set_xlabel("price in A$")
+
+plt.tight_layout()
+plt.show()

@@ -19,6 +19,15 @@ ORDER BY day;
 """
 
 df = pd.read_sql(query, engine)
+df["day"] = pd.to_datetime(df["day"])
 
-print(df.head())
-print(df.tail())
+fig, ax = plt.subplots(figsize=(10, 5))
+ax.plot(
+    df["day"],
+    df["number_of_customers"]
+)
+ax.set_title("Number of customers in 2022/2023")
+ax.set_xlabel("date")
+ax.set_ylabel("number of customers")
+
+plt.show()
